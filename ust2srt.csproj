@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<OutputType>WinExe</OutputType>
+	<TargetFramework>net5.0-windows</TargetFramework>
+	<UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <!--
+    
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	<PublishSingleFile>true</PublishSingleFile>
+	<PublishTrimmed>true</PublishTrimmed>
+	<DebugType>embedded</DebugType>
+  -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\utauPlugin-master\utauPlugin\utauPlugin.csproj" />
+    <ProjectReference Include="..\utauPlugin-master\UtauVoiceBank\UtauVoiceBank\UtauVoiceBank.csproj" />
+    <ProjectReference Include="..\utauPlugin-master\Wave\Wave\Wave.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
