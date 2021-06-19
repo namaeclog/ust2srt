@@ -79,7 +79,7 @@ namespace ust2srt
             {
                 if(!vb_path_checked)
                 {
-                    if(MessageBox.Show("You enabled the \"includes preuttrance\" option but not location the voice folder.\nNow default voice folder is " + vb_path + "\nAre you sure to continue proccess without locate voice folder?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    if(MessageBox.Show("You enabled the \"includes preuttrance\" option but not locate the voice folder.\nNow default voice folder is " + vb_path + "\nAre you sure to continue proccess without locate voice folder?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {
                         return;
                     }
@@ -120,14 +120,15 @@ namespace ust2srt
                 if (first_note.GetLyric() != "R" && checkbox_inludes_oto.Checked)
                 {
                     double pre;
-                    if(first_note.PreHasValue())
+                    double cv = 1;
+                    if (first_note.PreHasValue())
                     {
                         pre = first_note.GetPre();
                     }
                     else
                     {
                         //子音伸縮率
-                        double cv = Math.Pow(2, (1.0 - (first_note.GetVelocity() / 100.0)));
+                        cv = Math.Pow(2, (1.0 - (first_note.GetVelocity() / 100.0)));
                         String element;
                         Oto oto;
                         if (vb.oto.TryGetValue(first_note.GetLyric(), out oto))
@@ -145,7 +146,7 @@ namespace ust2srt
                         pre = vb.oto[element].Pre;
                     }
                     //修正先行發聲
-                    double fp = pre * j;
+                    double fp = pre * cv;
                     start_time = start_length / 480.0 * (60 / utauPlugin.Tempo) - fp / 1000;
                 }
                 else
@@ -198,6 +199,7 @@ namespace ust2srt
                 TimeSpan start = TimeSpan.FromSeconds(start_time), stop = TimeSpan.FromSeconds(stop_time);
                 writer.WriteLine(start.ToString(@"hh\:mm\:ss\,fff") + " --> " + stop.ToString(@"hh\:mm\:ss\,fff"));
                 writer.WriteLine(line + "\r\n");
+                ++srt_counter;
             }
             writer.Close();
             MessageBox.Show("SRT File Exportation Successed to\n" + file.FullName, "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -208,6 +210,7 @@ namespace ust2srt
             if(locate_vb_dialog.ShowDialog() == DialogResult.OK)
             {
                 vb_path = locate_vb_dialog.SelectedPath;
+                vb_path_checked = true;
                 tooltip_vb_location.SetToolTip(locate_voice_dir, vb_path);
             }
         }
@@ -246,6 +249,14 @@ namespace ust2srt
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("dev: 曲名障礙(namaeclog)\ntwitter/@namaeclog\n\nmore about this program please check https://github.com/namaeclog/ust2srt", "About");
+        }
+
+        private void checkbox_inludes_oto_CheckedChanged(object sender, EventArgs e)
+        {
+            if(!vb_path_checked)
+            {
+                MessageBox.Show("Enable this function need to select folder of UTAU voice", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
