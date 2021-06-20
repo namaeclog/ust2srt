@@ -36,6 +36,7 @@ namespace ust2srt
                 original_vb_name = utauPlugin.VoiceDir;
                 label_selected_filename.Text = Path.GetFileName(filename);
                 checkbox_inludes_oto.Enabled = true;
+                checkbox_all_prefix.Enabled = true;
                 edit_area.Enabled = true;
                 button_export_srt.Enabled = true;
                 max_R.Enabled = true;
@@ -77,7 +78,7 @@ namespace ust2srt
 
         private void export_to_srt(object sender, EventArgs e)
         {
-            if (checkbox_inludes_oto.Checked)
+            if (checkbox_inludes_oto.Checked || checkbox_all_prefix.Checked)
             {
                 if(!vb_path_checked)
                 {
@@ -149,7 +150,7 @@ namespace ust2srt
                         {
                             //if element don't exists in oto
                             //add prefix
-                            element = first_note.GetLyric() + vb.prefixMap[first_note.GetNoteNumName()].Su;
+                            element = vb.prefixMap[first_note.GetNoteNumName()].Pre + first_note.GetLyric() + vb.prefixMap[first_note.GetNoteNumName()].Su;
                         }
                         //先行發聲
                         pre = vb.oto[element].Pre;
@@ -198,7 +199,15 @@ namespace ust2srt
                     }
                     else
                     {
-                        line += left + note.GetLyric() + right;
+                        Oto oto;
+                        if (checkbox_all_prefix.Checked && !vb.oto.TryGetValue(note.GetLyric(), out oto))
+                        {
+                            line += left + vb.prefixMap[note.GetNoteNumName()].Pre + note.GetLyric() + vb.prefixMap[note.GetNoteNumName()].Su + right;
+                        }
+                        else
+                        {
+                            line += left + note.GetLyric() + right;
+                        }
                         start_length += note.GetLength();
                         ++note_num;
                     }
@@ -264,6 +273,10 @@ namespace ust2srt
                 else edit_area.SelectionStart = Math.Max(0, edit_area.Text.LastIndexOf('[', edit_area.SelectionStart));
             }
         }
+        private void warn_if_null_voicedir()
+        {
+            if(!vb_path_checked) MessageBox.Show("Enable this function need to locate folder \"UTAU\\voice\"", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
 
         private void edit_area_Click(object sender, EventArgs e)
         {
@@ -283,12 +296,17 @@ namespace ust2srt
 
         private void checkbox_inludes_oto_CheckedChanged(object sender, EventArgs e)
         {
-            if(!vb_path_checked)
+            if(checkbox_inludes_oto.Checked)
             {
-                MessageBox.Show("Enable this function need to locate folder \"UTAU\\voice\"", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                warn_if_null_voicedir();
             }
             if (checkbox_inludes_oto.Checked) checkbox_remove_overlap.Enabled = true;
             else checkbox_remove_overlap.Enabled = false;
+        }
+
+        private void checkbox_all_prefix_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkbox_all_prefix.Checked) warn_if_null_voicedir();
         }
     }
 }

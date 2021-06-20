@@ -48,6 +48,7 @@ namespace ust2srt
             this.tooltip_max_R = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.checkbox_remove_overlap = new System.Windows.Forms.CheckBox();
+            this.checkbox_all_prefix = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.max_R)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,12 +85,12 @@ namespace ust2srt
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edit_area.Enabled = false;
-            this.edit_area.Location = new System.Drawing.Point(10, 134);
+            this.edit_area.Location = new System.Drawing.Point(10, 162);
             this.edit_area.Multiline = true;
             this.edit_area.Name = "edit_area";
             this.edit_area.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.edit_area.ShortcutsEnabled = false;
-            this.edit_area.Size = new System.Drawing.Size(860, 507);
+            this.edit_area.Size = new System.Drawing.Size(860, 579);
             this.edit_area.TabIndex = 2;
             this.edit_area.Click += new System.EventHandler(this.edit_area_Click);
             this.edit_area.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edit_area_KeyDown);
@@ -179,7 +180,7 @@ namespace ust2srt
             // max_R
             // 
             this.max_R.Enabled = false;
-            this.max_R.Location = new System.Drawing.Point(68, 102);
+            this.max_R.Location = new System.Drawing.Point(68, 129);
             this.max_R.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -203,7 +204,7 @@ namespace ust2srt
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 104);
+            this.label3.Location = new System.Drawing.Point(10, 131);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 19);
             this.label3.TabIndex = 13;
@@ -234,11 +235,24 @@ namespace ust2srt
             this.checkbox_remove_overlap.Text = "remove overlap of srt";
             this.checkbox_remove_overlap.UseVisualStyleBackColor = true;
             // 
+            // checkbox_all_prefix
+            // 
+            this.checkbox_all_prefix.AutoSize = true;
+            this.checkbox_all_prefix.Enabled = false;
+            this.checkbox_all_prefix.Location = new System.Drawing.Point(10, 105);
+            this.checkbox_all_prefix.Name = "checkbox_all_prefix";
+            this.checkbox_all_prefix.Size = new System.Drawing.Size(203, 23);
+            this.checkbox_all_prefix.TabIndex = 16;
+            this.checkbox_all_prefix.Text = "show all prefix and suffix";
+            this.checkbox_all_prefix.UseVisualStyleBackColor = true;
+            this.checkbox_all_prefix.CheckedChanged += new System.EventHandler(this.checkbox_all_prefix_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(882, 653);
+            this.ClientSize = new System.Drawing.Size(882, 753);
+            this.Controls.Add(this.checkbox_all_prefix);
             this.Controls.Add(this.checkbox_remove_overlap);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
@@ -282,6 +296,7 @@ namespace ust2srt
         private System.Windows.Forms.ToolTip tooltip_max_R;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkbox_remove_overlap;
+        private System.Windows.Forms.CheckBox checkbox_all_prefix;
     }
 }
 
