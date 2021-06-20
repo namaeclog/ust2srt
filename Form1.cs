@@ -79,7 +79,7 @@ namespace ust2srt
             {
                 if(!vb_path_checked)
                 {
-                    if(MessageBox.Show("You enabled the \"includes preuttrance\" option but not locate the voice folder.\nNow default voice folder is " + vb_path + "\nAre you sure to continue proccess without locate voice folder?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    if(MessageBox.Show("You enabled the \"includes preutterance\" option but not locate the UTAU\\voice folder.\nNow default voice folder is " + vb_path + "\nAre you sure to continue proccess without locating voice folder?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {
                         return;
                     }
@@ -202,7 +202,7 @@ namespace ust2srt
                 ++srt_counter;
             }
             writer.Close();
-            MessageBox.Show("SRT File Exportation Successed to\n" + file.FullName, "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("SRT File Exportation Successed at\n" + file.FullName, "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void locate_voice_dir_Click(object sender, EventArgs e)
@@ -255,7 +255,7 @@ namespace ust2srt
         {
             if(!vb_path_checked)
             {
-                MessageBox.Show("Enable this function need to select folder of UTAU voice", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Enable this function need to locate folder \"UTAU\\voice\"", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

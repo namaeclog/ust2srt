@@ -55,6 +55,7 @@ namespace ust2srt
             this.openfile_dialog.FileName = "*.ust";
             this.openfile_dialog.Filter = "ust project|*.ust|plain text|*.txt";
             this.openfile_dialog.SupportMultiDottedExtensions = true;
+            this.openfile_dialog.Title = "Select ust...";
             // 
             // load_ust
             // 
@@ -100,12 +101,13 @@ namespace ust2srt
             this.checkbox_inludes_oto.Enabled = false;
             this.checkbox_inludes_oto.Location = new System.Drawing.Point(10, 47);
             this.checkbox_inludes_oto.Name = "checkbox_inludes_oto";
-            this.checkbox_inludes_oto.Size = new System.Drawing.Size(173, 23);
+            this.checkbox_inludes_oto.Size = new System.Drawing.Size(181, 23);
             this.checkbox_inludes_oto.TabIndex = 5;
-            this.checkbox_inludes_oto.Text = "includes preuttrance";
+            this.checkbox_inludes_oto.Text = "includes preutterance";
             this.tooltip_vb_location.SetToolTip(this.checkbox_inludes_oto, "you MUST locate UTAU \"voice\" folder before using \"includes preuttrance\" to export" +
         "");
             this.checkbox_inludes_oto.UseVisualStyleBackColor = true;
+            this.checkbox_inludes_oto.CheckedChanged += new System.EventHandler(this.checkbox_inludes_oto_CheckedChanged);
             // 
             // button_export_srt
             // 
