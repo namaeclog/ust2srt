@@ -11,4 +11,10 @@ convert ust file to srt subtitle
 * limit max R in each R section
 * custom symbol of lyric's left and right
 
+## Requirement
+.NET Framework 5.0 runtime
+
 ## Usage
+
+## Build
+if you want to build by yourself, you need library [utauPlugin](https://github.com/delta-kimigatame/utauPlugin)
