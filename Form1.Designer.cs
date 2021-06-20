@@ -47,6 +47,7 @@ namespace ust2srt
             this.label3 = new System.Windows.Forms.Label();
             this.tooltip_max_R = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.checkbox_remove_overlap = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.max_R)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,7 +179,7 @@ namespace ust2srt
             // max_R
             // 
             this.max_R.Enabled = false;
-            this.max_R.Location = new System.Drawing.Point(70, 67);
+            this.max_R.Location = new System.Drawing.Point(68, 102);
             this.max_R.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -202,7 +203,7 @@ namespace ust2srt
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 69);
+            this.label3.Location = new System.Drawing.Point(10, 104);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 19);
             this.label3.TabIndex = 13;
@@ -222,11 +223,23 @@ namespace ust2srt
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // checkbox_remove_overlap
+            // 
+            this.checkbox_remove_overlap.AutoSize = true;
+            this.checkbox_remove_overlap.Enabled = false;
+            this.checkbox_remove_overlap.Location = new System.Drawing.Point(10, 76);
+            this.checkbox_remove_overlap.Name = "checkbox_remove_overlap";
+            this.checkbox_remove_overlap.Size = new System.Drawing.Size(180, 23);
+            this.checkbox_remove_overlap.TabIndex = 15;
+            this.checkbox_remove_overlap.Text = "remove overlap of srt";
+            this.checkbox_remove_overlap.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 653);
+            this.Controls.Add(this.checkbox_remove_overlap);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.max_R);
@@ -268,6 +281,7 @@ namespace ust2srt
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolTip tooltip_max_R;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkbox_remove_overlap;
     }
 }
 

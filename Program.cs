@@ -22,4 +22,16 @@ namespace ust2srt
             Application.Run(new Form1());
         }
     }
+    class srt
+    {
+        public double start { get; set; }
+        public double stop { get; set; }
+        public String text { get; set; }
+        public srt(double s, double e, String t)
+        {
+            this.start = s;
+            this.stop = e;
+            this.text = t;
+        }
+    }
 }

@@ -90,8 +90,6 @@ namespace ust2srt
             VoiceBank vb = utauPlugin.vb;
 
 
-            FileInfo file = new FileInfo(Path.ChangeExtension(filename, "srt"));
-            StreamWriter writer = file.CreateText();
 
 
 
@@ -111,6 +109,7 @@ namespace ust2srt
             //start time (unit length)
             int start_length = 0;
             int srt_counter = 1;
+            List<srt> srtlist = new List<srt>();
 
             for(int j = 0; j < lines_length.Length; ++j)
             {
@@ -195,11 +194,32 @@ namespace ust2srt
                     }
                 }
                 double stop_time = start_length / 480.0 * (60 / utauPlugin.Tempo);
-                writer.WriteLine(srt_counter);
-                TimeSpan start = TimeSpan.FromSeconds(start_time), stop = TimeSpan.FromSeconds(stop_time);
-                writer.WriteLine(start.ToString(@"hh\:mm\:ss\,fff") + " --> " + stop.ToString(@"hh\:mm\:ss\,fff"));
-                writer.WriteLine(line + "\r\n");
+                srtlist.Add(new srt(start_time, stop_time, line));
                 ++srt_counter;
+            }
+            FileInfo file = new FileInfo(Path.ChangeExtension(filename, "srt"));
+            StreamWriter writer = file.CreateText();
+            if(checkbox_inludes_oto.Checked && checkbox_remove_overlap.Checked)
+            {
+                for (int m = 0; m < srtlist.Count() - 1; ++m)
+                {
+                    srtlist[m].stop = srtlist[m + 1].start;
+                    if (srtlist[m].stop - srtlist[m].start < 0.001)
+                    {
+                        srtlist.RemoveAt(m);
+                        m--;
+                        srtlist[m].stop = srtlist[m + 1].start;
+                    }
+                }
+            }
+            int n = 1;
+            foreach(srt line in srtlist)
+            {
+                writer.WriteLine(n);
+                TimeSpan start = TimeSpan.FromSeconds(line.start), stop = TimeSpan.FromSeconds(line.stop);
+                writer.WriteLine(start.ToString(@"hh\:mm\:ss\,fff") + " --> " + stop.ToString(@"hh\:mm\:ss\,fff"));
+                writer.WriteLine(line.text + "\r\n");
+                ++n;
             }
             writer.Close();
             MessageBox.Show("SRT File Exportation Successed at\n" + file.FullName, "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -257,6 +277,8 @@ namespace ust2srt
             {
                 MessageBox.Show("Enable this function need to locate folder \"UTAU\\voice\"", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            if (checkbox_inludes_oto.Checked) checkbox_remove_overlap.Enabled = true;
+            else checkbox_remove_overlap.Enabled = false;
         }
     }
 }
