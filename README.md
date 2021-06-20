@@ -17,7 +17,7 @@ convert ust file to srt subtitle
 ## Usage
 1. select a ust file
 2. using Enter and Backspace to adjust break line in textarea
-3. check "includes preutterance" if you want subtitle starting point at note's preutterance
+3. check "includes preutterance" if you want starting point of subtitle at note's preutterance
 4. if you checked "includes preutterance", you must click "locate voice dir" to locate "UTAU\voice" folder
 5. check "remove srt overlap" if you don't want subtitle's timeline has overlap
 6. click export srt
