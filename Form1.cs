@@ -18,6 +18,7 @@ namespace ust2srt
         public UtauPlugin utauPlugin = null;
         public String vb_path = @".\";
         public Boolean vb_path_checked = false;
+        public String original_vb_name = "";
         private String filename = "";
         public Form1()
         {
@@ -32,6 +33,7 @@ namespace ust2srt
                 filename = openfile_dialog.FileName;
                 utauPlugin = new utauPlugin.UtauPlugin(filename);
                 utauPlugin.Input();
+                original_vb_name = utauPlugin.VoiceDir;
                 label_selected_filename.Text = Path.GetFileName(filename);
                 checkbox_inludes_oto.Enabled = true;
                 edit_area.Enabled = true;
@@ -84,8 +86,16 @@ namespace ust2srt
                         return;
                     }
                 }
-                utauPlugin.VoiceDir = utauPlugin.VoiceDir.Replace("%VOICE%", vb_path + "\\");
-                utauPlugin.InputVoiceBank();
+                try
+                {
+                    utauPlugin.VoiceDir = original_vb_name.Replace("%VOICE%", vb_path + "\\");
+                    utauPlugin.InputVoiceBank();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("VoiceBank data load failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             VoiceBank vb = utauPlugin.vb;
 
