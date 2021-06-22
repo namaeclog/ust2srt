@@ -12,7 +12,7 @@ convert ust file to srt subtitle
 * custom symbol of lyric's left and right
 
 ## Requirement
-.NET Framework 5.0 runtime
+.NET 5.0 runtime
 
 ## Usage
 1. select a ust file
