@@ -16,8 +16,6 @@ namespace ust2srt
     public partial class Form1 : Form
     {
         public UtauPlugin utauPlugin = null;
-        public String vb_path = @".\";
-        public Boolean vb_path_checked = false;
         public String original_vb_name = "";
         private String filename = "";
         public Form1()
@@ -80,21 +78,14 @@ namespace ust2srt
         {
             if (checkbox_inludes_oto.Checked || checkbox_all_prefix.Checked)
             {
-                if(!vb_path_checked)
-                {
-                    if(MessageBox.Show("You enabled the \"includes preutterance\" option but not locate the UTAU\\voice folder.\nNow default voice folder is " + vb_path + "\nAre you sure to continue proccess without locating voice folder?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
                 try
                 {
-                    utauPlugin.VoiceDir = original_vb_name.Replace("%VOICE%", vb_path + "\\");
+                    utauPlugin.VoiceDir = original_vb_name.Replace("%VOICE%", Program.VOICEPATH  + "\\");
                     utauPlugin.InputVoiceBank();
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show("VoiceBank data load failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("VoiceBank data load failed\nYou may locate UTAU installation folder manually.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -248,9 +239,8 @@ namespace ust2srt
         {
             if(locate_vb_dialog.ShowDialog() == DialogResult.OK)
             {
-                vb_path = locate_vb_dialog.SelectedPath;
-                vb_path_checked = true;
-                tooltip_vb_location.SetToolTip(locate_voice_dir, vb_path);
+                Program.VOICEPATH = locate_vb_dialog.SelectedPath;
+                tooltip_vb_location.SetToolTip(locate_voice_dir, Program.VOICEPATH);
             }
         }
 
@@ -273,10 +263,6 @@ namespace ust2srt
                 else edit_area.SelectionStart = Math.Max(0, edit_area.Text.LastIndexOf('[', edit_area.SelectionStart));
             }
         }
-        private void warn_if_null_voicedir()
-        {
-            if(!vb_path_checked) MessageBox.Show("Enable this function need to locate folder \"UTAU\\voice\"", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
 
         private void edit_area_Click(object sender, EventArgs e)
         {
@@ -291,22 +277,14 @@ namespace ust2srt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("dev: 曲名障礙(namaeclog)\ntwitter/@namaeclog\n\nmore about this program please check https://github.com/namaeclog/ust2srt", "About");
+            MessageBox.Show("dev: 曲名障礙(namaeclog)\ntwitter/@namaeclog\n\nmore about this program please check https://github.com/namaeclog/ust2srt", "ust2srt v1.0.6");
         }
 
         private void checkbox_inludes_oto_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkbox_inludes_oto.Checked)
-            {
-                warn_if_null_voicedir();
-            }
             if (checkbox_inludes_oto.Checked) checkbox_remove_overlap.Enabled = true;
             else checkbox_remove_overlap.Enabled = false;
-        }
-
-        private void checkbox_all_prefix_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkbox_all_prefix.Checked) warn_if_null_voicedir();
+            checkbox_remove_overlap.Enabled = checkbox_inludes_oto.Checked;
         }
     }
 }

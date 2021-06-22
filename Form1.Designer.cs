@@ -65,7 +65,7 @@ namespace ust2srt
             this.load_ust.Name = "load_ust";
             this.load_ust.Size = new System.Drawing.Size(132, 29);
             this.load_ust.TabIndex = 0;
-            this.load_ust.Text = "load ust file";
+            this.load_ust.Text = "Load ust file";
             this.load_ust.UseVisualStyleBackColor = true;
             this.load_ust.Click += new System.EventHandler(this.load_ust_Click);
             // 
@@ -119,19 +119,19 @@ namespace ust2srt
             this.button_export_srt.Name = "button_export_srt";
             this.button_export_srt.Size = new System.Drawing.Size(94, 29);
             this.button_export_srt.TabIndex = 6;
-            this.button_export_srt.Text = "export srt";
+            this.button_export_srt.Text = "Export srt";
             this.button_export_srt.UseVisualStyleBackColor = true;
             this.button_export_srt.Click += new System.EventHandler(this.export_to_srt);
             // 
             // locate_voice_dir
             // 
             this.locate_voice_dir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.locate_voice_dir.Location = new System.Drawing.Point(728, 99);
+            this.locate_voice_dir.Location = new System.Drawing.Point(652, 127);
             this.locate_voice_dir.Name = "locate_voice_dir";
-            this.locate_voice_dir.Size = new System.Drawing.Size(142, 29);
+            this.locate_voice_dir.Size = new System.Drawing.Size(218, 29);
             this.locate_voice_dir.TabIndex = 7;
-            this.locate_voice_dir.Text = "locate voice dir";
-            this.tooltip_vb_location.SetToolTip(this.locate_voice_dir, "Default .\\");
+            this.locate_voice_dir.Text = "Locate UTAU\\voice manually";
+            this.tooltip_vb_location.SetToolTip(this.locate_voice_dir, Program.VOICEPATH);
             this.locate_voice_dir.UseVisualStyleBackColor = true;
             this.locate_voice_dir.Click += new System.EventHandler(this.locate_voice_dir_Click);
             // 
@@ -145,7 +145,7 @@ namespace ust2srt
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(680, 44);
+            this.label1.Location = new System.Drawing.Point(680, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 19);
             this.label1.TabIndex = 8;
@@ -155,7 +155,7 @@ namespace ust2srt
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(772, 44);
+            this.label2.Location = new System.Drawing.Point(772, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 19);
             this.label2.TabIndex = 9;
@@ -163,7 +163,7 @@ namespace ust2srt
             // 
             // left_symbol_text
             // 
-            this.left_symbol_text.Location = new System.Drawing.Point(690, 66);
+            this.left_symbol_text.Location = new System.Drawing.Point(680, 61);
             this.left_symbol_text.Name = "left_symbol_text";
             this.left_symbol_text.Size = new System.Drawing.Size(86, 27);
             this.left_symbol_text.TabIndex = 10;
@@ -171,7 +171,7 @@ namespace ust2srt
             // 
             // right_symbol_text
             // 
-            this.right_symbol_text.Location = new System.Drawing.Point(782, 66);
+            this.right_symbol_text.Location = new System.Drawing.Point(772, 61);
             this.right_symbol_text.Name = "right_symbol_text";
             this.right_symbol_text.Size = new System.Drawing.Size(98, 27);
             this.right_symbol_text.TabIndex = 11;
@@ -216,7 +216,7 @@ namespace ust2srt
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(628, 99);
+            this.button1.Location = new System.Drawing.Point(676, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 29);
             this.button1.TabIndex = 14;
@@ -245,7 +245,6 @@ namespace ust2srt
             this.checkbox_all_prefix.TabIndex = 16;
             this.checkbox_all_prefix.Text = "show all prefix and suffix";
             this.checkbox_all_prefix.UseVisualStyleBackColor = true;
-            this.checkbox_all_prefix.CheckedChanged += new System.EventHandler(this.checkbox_all_prefix_CheckedChanged);
             // 
             // Form1
             // 

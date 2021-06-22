@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using utauPlugin;
+using Microsoft.Win32;
+using System.Text.RegularExpressions;
 
 namespace ust2srt
 {
@@ -12,10 +14,12 @@ namespace ust2srt
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+        public static String VOICEPATH;
         [STAThread]
         static void Main()
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            VOICEPATH = new Regex("\"(.*)\\\\utau.exe\".*").Match((String)Registry.ClassesRoot.OpenSubKey("UTAUSequenceText\\shell\\open\\command").GetValue("")).Groups[1].Value + "\\voice";
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
