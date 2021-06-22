@@ -18,10 +18,15 @@ convert ust file to srt subtitle
 1. select a ust file
 2. using Enter and Backspace to adjust break line in textarea
 3. check "includes preutterance" if you want starting point of subtitle at note's preutterance
-4. if you checked "includes preutterance", you must click "locate voice dir" to locate "UTAU\voice" folder
-5. check "remove srt overlap" if you don't want subtitle's timeline has overlap
-6. click export srt
-7. recommend to close this program after checking srt file is you want
+6. check "remove overlap of srt" if you don't want subtitle's timeline has overlap
+7. check "show all prefix and suffix" if you want exporting includes prefix and suffix whitch is not assign in ust
+8. click export srt
+9. recommend to close this program after checking srt file is you want
+
+## UTAU\voice location
+this program will automatically locate UTAU\voice folder from registry  
+if your computer had not installed UTAU or this program can't locates the UTAU\voice folder please click "Locate UTAU\voice manually" to locate voice folder  
+hover on "Locate UTAU\voice manually" button can show which folder this program located
 
 ## Build
 if you want to build by yourself, you need library [utauPlugin](https://github.com/delta-kimigatame/utauPlugin)
