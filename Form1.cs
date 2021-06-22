@@ -277,7 +277,7 @@ namespace ust2srt
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("dev: 曲名障礙(namaeclog)\ntwitter/@namaeclog\n\nmore about this program please check https://github.com/namaeclog/ust2srt", "ust2srt v1.0.6");
+            MessageBox.Show("Dev: 曲名障礙(namaeclog)\ntwitter/@namaeclog\n\nmore about this program please check https://github.com/namaeclog/ust2srt", "ust2srt v1.0.7");
         }
 
         private void checkbox_inludes_oto_CheckedChanged(object sender, EventArgs e)
